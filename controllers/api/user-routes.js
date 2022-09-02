@@ -26,14 +26,22 @@ router.post(`/login`, async (req, res) => {
         }
 
         req.session.save(() => {
-            res.session.userId = userData.id;
-            res.session.username = userData.username;
-            res.session.loggedIn = true;
+            req.session.userId = userData.id;
+            req.session.username = userData.username;
+            req.session.loggedIn = true;
 
             res.json({ userData, message: `You are now logged in` });
         })
     } catch (err) {
         res.status(400).json({ message: `No user account found` });
+    }
+})
+
+router(`/logout`, (req, res) => {
+    if (req.session.loggedIn) {
+        req.session.destroy(() => { res.status(204).end() });
+    } else {
+        res.status(404).end();
     }
 })
 
