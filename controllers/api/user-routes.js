@@ -16,4 +16,25 @@ router.post(`/`, async (req, res) => {
     }
 })
 
+router.post(`/login`, async (req, res) => {
+    try {
+        const userData = await User.findOne({ where: {username: req.body.username } });
+        const validPassword = userData.checkPassword(req.body.password);
+
+        if (!userData  || !validPassword) {
+            return res.status(400).json({ message: `No user account found` });
+        }
+
+        req.session.save(() => {
+            res.session.userId = userData.id;
+            res.session.username = userData.username;
+            res.session.loggedIn = true;
+
+            res.json({ userData, message: `You are now logged in` });
+        })
+    } catch (err) {
+        res.status(400).json({ message: `No user account found` });
+    }
+})
+
 module.exports = router;
