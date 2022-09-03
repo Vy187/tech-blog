@@ -1,0 +1,52 @@
+<section class="post">
+  <article class="card">
+    <figcaption class="card-header flex-row justify-space-between">
+      <h2>{{post.title}}</h2>
+      <figcaption>
+        Posted by {{post.User.username}} on {{format_date post.createdAt}}
+      </figcaption>
+    </figcaption>
+    <figcaption class="card-body">
+      {{post.body}}
+    </figcaption>
+  </article>
+
+  {{#if post.Comments}}
+    <article class="card">
+      <figcaption class="card-header">
+        <h3>Comments</h3>
+      </figcaption>
+
+      <figcaption class="card-body">
+        {{#each post.Comments}}
+          <figcaption>
+            <p>
+              {{body}}
+            </p>
+            <p>
+              &mdash; {{User.username}}, {{format_date createdAt}}
+            </p>
+          </figcaption>
+        {{/each}}
+      </figcaption>
+    </article>
+  {{/if}}
+
+  <form id="new-comment-form" class="card">
+    <figcaption class="card-header">
+      <h3>Add New Comment</h3>
+    </figcaption>
+
+    <figcaption class="card-body">
+      <input type="hidden" name="post-id" value="{{post.id}}" />
+
+      <label class="form-label" for="comment-body">Comment</label>
+
+      <textarea name="comment-body" class="form-input"></textarea>
+
+      <button type="submit" class="btn">Submit</button>
+    </figcaption>
+  </form>
+</section>
+
+<script src="/js/comment.js"></script>
