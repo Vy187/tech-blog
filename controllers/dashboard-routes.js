@@ -17,7 +17,7 @@ router.get(`/new`, withAuth, (req, res) => {
     res.render(`new-post`, { layout: `dashboard` });
 })
 
-router.get(`/:id`, withAuth, async (req, res) => {
+router.get(`/edit/:id`, withAuth, async (req, res) => {
     try {
         const postData = await Post.findByPk(req.params.id);
 
