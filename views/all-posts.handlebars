@@ -1,0 +1,17 @@
+<section class="posts">
+  {{#each posts}}
+  <article class="card">
+    <figcaption class="card-header flex-row justify-space-between">
+      <h2>
+        <a href="/post/{{id}}">{{title}}</a>
+      </h2>
+      <figcaption>
+        Posted by {{User.username}} on {{format_date createdAt}}
+      </figcaption>
+    </figcaption>
+    <figcaption class="card-body">
+      {{body}}
+    </figcaption>
+  </article>
+  {{/each}}
+</section>
