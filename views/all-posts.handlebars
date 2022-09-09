@@ -1,11 +1,28 @@
-<section class="posts">
-  {{#each posts}}
-  <article class="card">
-    <header class="card-header flex-row justify-space-between">
-      <h2><a href="/post/{{id}}">{{title}}</a></h2>
-      <p>Posted by {{User.username}} on {{format_date createdAt}}</p>
-    </header>
-    <p class="card-body">{{body}}</p>
-  </article>
-  {{/each}}
-</section>
+<nav class="navbar">
+  <ul>
+    <li class="li-inline nav-item"><a href="/">Home</a></li>
+    <li class="li-inline nav-item"><a href="/dashboard">Dashboard</a></li>
+    {{#if loggedIn}}
+    <li class="li-inline nav-item"><a href="#" id="logout-link">Logout</a></li>
+    {{else}}
+    <li class="li-inline nav-item"><a href="/login">Login</a></li>
+    {{/if}}
+  </ul>
+</nav>
+<header class="hero">
+  <h1 class="app-title"><a href="/">The Tech Blog</a></h1>
+</header>
+
+<main class="col-auto">
+  <section class="posts">
+    {{#each posts}}
+    <article class="card">
+      <header class="card-header flex-row justify-space-between">
+        <h2><a href="/post/{{id}}">{{title}}</a></h2>
+        <p>Posted by {{User.username}} on {{format_date createdAt}}</p>
+      </header>
+      <p class="card-body">{{body}}</p>
+    </article>
+    {{/each}}
+  </section>
+</main>

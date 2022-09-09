@@ -1,13 +1,29 @@
-<section class="post">
-  <article class="card">
-    <header class="card-header flex-row justify-space-between">
-      <h2>{{post.title}}</h2>
-      <p>Posted by {{post.User.username}} on {{format_date post.createdAt}}</p>
-    </header>
-    <p class="card-body">{{post.body}}</p>
-  </article>
+<nav class="navbar">
+  <ul>
+    <li class="li-inline nav-item"><a href="/">Home</a></li>
+    <li class="li-inline nav-item"><a href="/dashboard">Dashboard</a></li>
+    {{#if loggedIn}}
+    <li class="li-inline nav-item"><a href="#" id="logout-link">Logout</a></li>
+    {{else}}
+    <li class="li-inline nav-item"><a href="/login">Login</a></li>
+    {{/if}}
+  </ul>
+</nav>
+<header class="hero">
+  <h1 class="app-title"><a href="/">The Tech Blog</a></h1>
+</header>
 
-  {{#if post.Comments}}
+<main class="col-auto">
+  <section class="post">
+    <article class="card">
+      <header class="card-header flex-row justify-space-between">
+        <h2>{{post.title}}</h2>
+        <p>Posted by {{post.User.username}} on {{format_date post.createdAt}}</p>
+      </header>
+      <p class="card-body">{{post.body}}</p>
+    </article>
+
+    {{#if post.Comments}}
     <article class="card">
       <header class="card-header">
         <h3>Comments</h3>
@@ -15,29 +31,30 @@
 
       <figure class="card-body">
         {{#each post.Comments}}
-          <figcaption>
-            <p>{{body}}</p>
-            <p>&mdash; {{User.username}}, {{format_date createdAt}}</p>
-          </figcaption>
+        <figcaption>
+          <p>{{body}}</p>
+          <p>&mdash; {{User.username}}, {{format_date createdAt}}</p>
+        </figcaption>
         {{/each}}
       </figure>
     </article>
-  {{/if}}
+    {{/if}}
 
 
-  {{#if loggedIn}}
-  <form id="new-comment-form" class="card">
-    <header class="card-header">
-      <h3>Add New Comment</h3>
-    </header>
+    {{#if loggedIn}}
+    <form id="new-comment-form" class="card">
+      <header class="card-header">
+        <h3>Add New Comment</h3>
+      </header>
 
-    <figure class="card-body">
-      <input type="hidden" name="post-id" value="{{post.id}}" />
-      <textarea name="comment-body" class="form-input"></textarea>
-      <button type="submit" class="btn">Submit</button>
-    </figure>
-  </form>
-  {{/if}}
-</section>
+      <figure class="card-body">
+        <input type="hidden" name="post-id" value="{{post.id}}" />
+        <textarea name="comment-body" class="form-input"></textarea>
+        <button type="submit" class="btn">Submit</button>
+      </figure>
+    </form>
+    {{/if}}
+  </section>
 
-<script src="/js/comment.js"></script>
+  <script src="/js/comment.js"></script>
+</main>
