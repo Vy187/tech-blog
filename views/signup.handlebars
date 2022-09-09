@@ -1,21 +1,39 @@
-<section class="card">
-  <header class="card-header">
-    <h2>Sign Up</h2>
-  </header>
-  <article id="signup" role="tabpanel">
-    <form id="signup-form" class="card-body">
-      <figure>
-        <label for="username-input-signup">Username</label>
-        <input type="text" id="username-input-signup" />
-      </figure>
-      <figure>
-        <label for="password-input-signup">Password</label>
-        <input type="password" id="password-input-signup" />
-      </figure>
-      <button type="submit" id="signup-btn" class="btn" >Signup!</button>
-      <a href="/login">Login instead</a>
-    </form>
-  </article>
-</section>
+<nav class="navbar">
+  <ul>
+    <li class="li-inline nav-item"><a href="/">Home</a></li>
+    <li class="li-inline nav-item"><a href="/dashboard">Dashboard</a></li>
+    {{#if loggedIn}}
+    <li class="li-inline nav-item"><a href="#" id="logout-link">Logout</a></li>
+    {{else}}
+    <li class="li-inline nav-item"><a href="/login">Login</a></li>
+    {{/if}}
+  </ul>
+</nav>
+<header class="hero">
+  <h1 class="app-title"><a href="/">The Tech Blog</a></h1>
+</header>
 
-<script src="/js/signup.js"></script>
+
+<main class="col-auto">
+  <section class="card">
+    <header class="card-header">
+      <h2>Sign Up</h2>
+    </header>
+    <article id="signup" role="tabpanel">
+      <form id="signup-form" class="card-body">
+        <figure>
+          <label for="username-input-signup">Username</label>
+          <input type="text" id="username-input-signup" />
+        </figure>
+        <figure>
+          <label for="password-input-signup">Password</label>
+          <input type="password" id="password-input-signup" />
+        </figure>
+        <button type="submit" id="signup-btn" class="btn">Signup!</button>
+        <a href="/login">Login instead</a>
+      </form>
+    </article>
+  </section>
+
+  <script src="/js/signup.js"></script>
+</main>
